@@ -1,0 +1,6 @@
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Data\bin\Debug\MyLibrary.Data.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Data\bin\Debug\MyLibrary.Data.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Data\obj\Debug\MyLibrary.Data.csprojResolveAssemblyReference.cache
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Data\obj\Debug\MyLibrary.Data.csproj.CoreCompileInputs.cache
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Data\obj\Debug\MyLibrary.Data.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Data\obj\Debug\MyLibrary.Data.pdb

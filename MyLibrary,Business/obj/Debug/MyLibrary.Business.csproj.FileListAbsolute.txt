@@ -1,0 +1,10 @@
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary,Business.exe.config
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary,Business.exe
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary,Business.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary.Data.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary.Data.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary.Business.csprojResolveAssemblyReference.cache
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary.Business.csproj.CoreCompileInputs.cache
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary.Business.csproj.CopyComplete
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary,Business.exe
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary,Business.pdb
