@@ -6,14 +6,9 @@ namespace MyLibrary.Data
 {
     public class BookRepository 
     {
-        private DBConnection connection;
 
-        //public BookRepository(DBConnection bookshelfConnection)
-        //{
-        //    this.connection = bookshelfConnection;
-        //}
 
-        public List<Book> GetBooks()
+        public List<Book>GetBooks()
         {
 
             using (SqlConnection connection = DBConnection.GetSqlConnection())

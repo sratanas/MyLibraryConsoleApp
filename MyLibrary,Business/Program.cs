@@ -1,4 +1,4 @@
-﻿using MyLibrary.Data;
+﻿using MyLibrary_Business;
 using System;
 
 namespace MyLibrary.Business
@@ -8,16 +8,10 @@ namespace MyLibrary.Business
     {
         static void Main(string[] args)
         {
-            var repo = new BookRepository();
-            
-            var bookList = repo.GetBooks();
-            
+            Console.Title = "My Awesome Home Library!";
 
-            foreach (var book in bookList)
-            {
-                Console.WriteLine(book.Title);
-            }
-            
+            var books = new Books();
+            books.Welcome();
 
             Console.ReadKey();
            

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Author.cs" />
+    <Compile Include="AuthorRepository.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookRepository.cs" />
     <Compile Include="DBConnection.cs" />
