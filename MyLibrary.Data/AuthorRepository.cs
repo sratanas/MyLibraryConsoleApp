@@ -45,5 +45,23 @@ namespace MyLibrary.Data
                 return authorList;
             }
         }
+
+        public void AddAuthor(Author author)
+        {
+            using (SqlConnection connection = DBConnection.GetSqlConnection())
+            {
+                var newAuthor = new Author();
+                string query = @"AddAuthor";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@AuthorFirstName", author.FirstName);
+                command.Parameters.AddWithValue("@AuthorLastName", author.LastName);
+
+                command.ExecuteNonQuery();
+
+            }
+        }
     }
 }

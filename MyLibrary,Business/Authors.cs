@@ -65,6 +65,23 @@ namespace MyLibrary.Business
             
         }
 
+        public void AddAuthor()
+        {
+
+            var author = new Author();
+
+            Console.WriteLine("Enter the author's LAST name:");
+            author.FirstName = Console.ReadLine();
+            Console.WriteLine("Enter the author's FIRST name:");
+            author.LastName = Console.ReadLine();
+
+            Console.WriteLine("You entered {0} {1} as an author.", author.FirstName, author.LastName);
+
+            new AuthorRepository().AddAuthor(author);
+            
+
+        }
+
 
 
 
