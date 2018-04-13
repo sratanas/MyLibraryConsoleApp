@@ -9,7 +9,7 @@ namespace MyLibrary.Data
 {
     public class AuthorRepository
     {
-        public IEnumerable<Author> GetAuthorSearchResults(string searchParam)
+        public List<Author> GetAuthorSearchResults(string searchParam)
         {
 
             using (SqlConnection connection = DBConnection.GetSqlConnection())
