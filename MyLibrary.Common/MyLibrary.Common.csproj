@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40E8A736-10CB-4767-9701-AE5A53F88F2B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>MyLibrary_Business</RootNamespace>
-    <AssemblyName>MyLibrary,Business</AssemblyName>
+    <ProjectGuid>{F58207C9-CB22-4F35-B85D-D1E32386D369}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyLibrary.Common</RootNamespace>
+    <AssemblyName>MyLibrary.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,22 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authors.cs" />
-    <Compile Include="Books.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Answers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Searches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MyLibrary.Common\MyLibrary.Common.csproj">
-      <Project>{f58207c9-cb22-4f35-b85d-d1e32386d369}</Project>
-      <Name>MyLibrary.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyLibrary.Data\MyLibrary.Data.csproj">
-      <Project>{26ecb0bf-d8f8-4d5c-acdc-cb0072e14ffc}</Project>
+      <Project>{26ECB0BF-D8F8-4D5C-ACDC-CB0072E14FFC}</Project>
       <Name>MyLibrary.Data</Name>
     </ProjectReference>
   </ItemGroup>

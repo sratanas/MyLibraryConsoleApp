@@ -1,0 +1,9 @@
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\bin\Debug\MyLibrary.Common.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\bin\Debug\MyLibrary.Common.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\obj\Debug\MyLibrary.Common.csprojResolveAssemblyReference.cache
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\obj\Debug\MyLibrary.Common.csproj.CoreCompileInputs.cache
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\obj\Debug\MyLibrary.Common.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\obj\Debug\MyLibrary.Common.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\bin\Debug\MyLibrary.Data.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\bin\Debug\MyLibrary.Data.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary.Common\obj\Debug\MyLibrary.Common.csproj.CopyComplete

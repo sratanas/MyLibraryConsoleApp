@@ -8,3 +8,5 @@ C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\M
 C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary.Business.csproj.CopyComplete
 C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary,Business.exe
 C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\obj\Debug\MyLibrary,Business.pdb
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary.Common.dll
+C:\Users\stephanie.ratanas\source\repos\MyLibrary\MyLibrary,Business\bin\Debug\MyLibrary.Common.pdb

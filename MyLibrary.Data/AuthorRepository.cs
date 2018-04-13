@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MyLibrary.Data
 {
@@ -34,7 +32,7 @@ namespace MyLibrary.Data
                     {
                         var author = new Author();
 
-                        
+                        author.Id = Int32.Parse(reader["Id"].ToString());
                         author.FirstName = reader["FirstName"].ToString();
                         author.LastName = reader["LastName"].ToString();
 

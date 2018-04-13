@@ -1,4 +1,6 @@
-﻿using MyLibrary_Business;
+﻿using MyLibrary.Business;
+using MyLibrary.Common;
+using MyLibrary_Business;
 using System;
 
 namespace MyLibrary.Business
@@ -10,10 +12,11 @@ namespace MyLibrary.Business
         {
             Console.Title = "My Awesome Home Library!";
 
-            var books = new Books();
-            books.Welcome();
-
+            //var books = new Books();
+            new Searches().Welcome();
             Console.ReadKey();
+
+          
            
         }
     }
