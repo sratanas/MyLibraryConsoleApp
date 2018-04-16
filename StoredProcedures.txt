@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE GetAllBookInfo
+CREATE PROCEDURE GetAllBookInfo
 
 AS
 
@@ -54,17 +54,23 @@ AS
 SELECT * FROM Books
 WHERE Title LIKE @TitleSearchParam
 
+
+
 CREATE PROCEDURE GetAllGenres
 
 AS
 
 SELECT * FROM Genres
 
+
+
 CREATE PROCEDURE GetAllLocations
 
 AS
 
 SELECT * FROM Locations
+
+
 
 CREATE PROCEDURE GetLocationById
 @LocationId INT
@@ -73,12 +79,15 @@ AS
 SELECT * FROM Locations
 WHERE Id = @LocationId
 
+
+
 CREATE PROCEDURE GetGenreById
 @GenreId INT
 AS
 
 SELECT * FROM Genres
 WHERE Id = @GenreId
+
 
 
 CREATE PROCEDURE AddBook

@@ -1,11 +1,11 @@
 ﻿using MyLibrary.Business;
 using System;
 
-namespace MyLibrary_Business
+namespace MyLibrary.Business
 {
     public class Searches
     {
-
+        //Starting point for the application
         public void Welcome()
         {
 
@@ -20,6 +20,7 @@ namespace MyLibrary_Business
             new Searches().SearchChoice(choice);
         }
 
+        //First set of choices
         public void SearchChoice(string choice)
         {
 
@@ -60,6 +61,7 @@ namespace MyLibrary_Business
             } 
         }
 
+        
         public void MoreOptions()
         {
             Console.WriteLine("Here are some other things you can do. Please choose:");

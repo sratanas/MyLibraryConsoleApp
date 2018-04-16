@@ -1,6 +1,6 @@
 ﻿using MyLibrary.Common;
 using MyLibrary.Data;
-using MyLibrary_Business;
+using MyLibrary.Business;
 using System;
 using System.Linq;
 
@@ -9,7 +9,7 @@ namespace MyLibrary.Business
     public class Books
     {
 
-
+        //Gets all books in the database
         public void GetAllBooks()
         {
             var repo = new BookRepository();
@@ -33,6 +33,7 @@ namespace MyLibrary.Business
 
 
         }
+
 
         public void SearchTitles()
         {
@@ -79,15 +80,12 @@ namespace MyLibrary.Business
 
             }
 
-        public void GetAllGenres()
-        {
-
-        }
-
+        
         public void AddBook()
         {
             var book = new Book();
 
+            //Asks user for parameters
             Console.WriteLine("Enter the title of the book:");
             book.Title = Console.ReadLine();
 
@@ -99,13 +97,35 @@ namespace MyLibrary.Business
             var input = Console.ReadLine();
             var result = repo.GetAuthorSearchResults(input);
 
-            Console.WriteLine("Were you looking for: {0} {1}? ", result.FirstName, result.LastName);
-            var answer = Console.ReadLine();
-            var answerList = new Answers().commonYesArr;
-            if (answerList.Contains(answer))
+            if (result.LastName != null)
             {
-                book.AuthorId = Convert.ToInt32(result.Id);
+                //Returns search from author search
+                Console.WriteLine("Were you looking for: {0} {1}? ", result.FirstName, result.LastName);
+                var answer = Console.ReadLine();
+                var answerList = new Answers().commonYesArr;
+                if (answerList.Contains(answer))
+                {
+                    book.AuthorId = Convert.ToInt32(result.Id);
+                }
             }
+
+            else if (result.LastName == null)
+            {
+                //Directs user to the add author method
+                Console.WriteLine("I couldn't find that author, would you like to add them?");
+                var addAuthorAnswer = Console.ReadLine();
+
+                if (new Answers().commonYesArr.Contains(addAuthorAnswer))
+                {
+                    new Authors().AddAuthor();
+                }
+                else
+                {
+                    Console.WriteLine("You'll have to add this author before you can add one of their books. I'll return you home for now.");
+                    new Searches().Welcome();
+                }
+            }
+
             else
             {
                 Console.WriteLine("Sorry, you have to start over!");
@@ -131,10 +151,11 @@ namespace MyLibrary.Business
                     Console.WriteLine("[" + location.Id + "] " + location.LocationName);  
             }
             var chosenLocationId = Console.ReadLine();
-            var parsedLocationId = Int32.Parse(chosenGenreId);
+            var parsedLocationId = Int32.Parse(chosenLocationId);
             var chosenLocationName = new LocationRepository().GetLocationById(parsedLocationId).LocationName;
             book.LocationId = parsedLocationId;
 
+            //Displays entry before executing
             Console.WriteLine("Here is the information you entered:");
             Console.WriteLine(book.Title);
             Console.WriteLine("Published: " + book.YearPublished);

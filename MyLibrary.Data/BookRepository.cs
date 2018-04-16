@@ -30,9 +30,9 @@ namespace MyLibrary.Data
                         book.Title = reader["Title"].ToString();
                         book.AuthorFirstName = reader["FirstName"].ToString();
                         book.AuthorLastName = reader["LastName"].ToString();
-                        book.GenreId = Int32.Parse(reader["GenreName"].ToString());
+                        book.GenreName = reader["GenreName"].ToString();
                         book.YearPublished = Int32.Parse(reader["YearPublished"].ToString());
-                        book.LocationId = Int32.Parse(reader["LocationName"].ToString());
+                        book.LocationName = reader["LocationName"].ToString();
 
                         bookList.Add(book);
                     }
@@ -119,17 +119,17 @@ namespace MyLibrary.Data
         {
             using (SqlConnection connection = DBConnection.GetSqlConnection())
             {
-                var newBook = new Book();
+                //var newBook = new Book();
                 string query = @"AddBook";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@Title", newBook.Title);
-                command.Parameters.AddWithValue("@YearPublished", newBook.YearPublished);
-                command.Parameters.AddWithValue("@Author", newBook.AuthorId);
-                command.Parameters.AddWithValue("@Genre", newBook.GenreId);
-                command.Parameters.AddWithValue("@Location", newBook.LocationId);
+                command.Parameters.AddWithValue("@Title", book.Title);
+                command.Parameters.AddWithValue("@YearPublished", book.YearPublished);
+                command.Parameters.AddWithValue("@Author", book.AuthorId);
+                command.Parameters.AddWithValue("@Genre", book.GenreId);
+                command.Parameters.AddWithValue("@Location", book.LocationId);
 
 
 
