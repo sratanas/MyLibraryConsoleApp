@@ -7,12 +7,13 @@ namespace MyLibrary.Data
 {
     public class AuthorRepository
     {
-        public List<Author> GetAuthorSearchResults(string searchParam)
+        public Author GetAuthorSearchResults(string searchParam)
         {
 
             using (SqlConnection connection = DBConnection.GetSqlConnection())
             {
-                List<Author> authorList = new List<Author>();
+                //List<Author> authorList = new List<Author>();
+                var author = new Author();
 
                 string query = @"SearchAuthors";
 
@@ -25,24 +26,23 @@ namespace MyLibrary.Data
 
 
 
-                if (reader.HasRows)
-                {
+               
 
                     while (reader.Read())
                     {
-                        var author = new Author();
+                        //var author = new Author();
 
                         author.Id = Int32.Parse(reader["Id"].ToString());
                         author.FirstName = reader["FirstName"].ToString();
                         author.LastName = reader["LastName"].ToString();
 
 
-                        authorList.Add(author);
+                        //authorList.Add(author);
                     }
 
-                }
+                
 
-                return authorList;
+                return author;
             }
         }
 
@@ -58,6 +58,8 @@ namespace MyLibrary.Data
 
                 command.Parameters.AddWithValue("@AuthorFirstName", author.FirstName);
                 command.Parameters.AddWithValue("@AuthorLastName", author.LastName);
+                command.Parameters.AddWithValue("@IsFemale", author.IsFemale);
+
 
                 command.ExecuteNonQuery();
 

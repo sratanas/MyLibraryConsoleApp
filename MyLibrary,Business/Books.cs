@@ -62,6 +62,7 @@ namespace MyLibrary.Business
                         {
                         Console.WriteLine(string.Format("{0} by {1} {2}", book.Title, book.AuthorFirstName, book.AuthorLastName));
                         }
+                    new Searches().Welcome();
                     }
                     
                     else if (input == "exit")
@@ -78,9 +79,83 @@ namespace MyLibrary.Business
 
             }
 
+        public void GetAllGenres()
+        {
 
+        }
 
-        
+        public void AddBook()
+        {
+            var book = new Book();
+
+            Console.WriteLine("Enter the title of the book:");
+            book.Title = Console.ReadLine();
+
+            Console.WriteLine("Enter the year the book was published:");
+            book.YearPublished = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the LAST name of the author: ");
+            var repo = new AuthorRepository();
+            var input = Console.ReadLine();
+            var result = repo.GetAuthorSearchResults(input);
+
+            Console.WriteLine("Were you looking for: {0} {1}? ", result.FirstName, result.LastName);
+            var answer = Console.ReadLine();
+            var answerList = new Answers().commonYesArr;
+            if (answerList.Contains(answer))
+            {
+                book.AuthorId = Convert.ToInt32(result.Id);
+            }
+            else
+            {
+                Console.WriteLine("Sorry, you have to start over!");
+                AddBook();
+            }
+
+            //Displays Genres and enters chosen genre Id
+            Console.WriteLine("What genre would you say this book is?");
+            var genreList = new GenreRepository().GetAllGenres();
+            foreach (var genre in genreList)
+            {
+                Console.WriteLine("["+genre.Id+"] " + genre.GenreName);
+            }
+            var chosenGenreId = Console.ReadLine();
+            var parsedId = Int32.Parse(chosenGenreId);
+            var chosenGenreName = new GenreRepository().GetGenreById(parsedId).GenreName;
+            book.GenreId = parsedId;
+
+            //Displays locations and enters chosen location Id
+            Console.WriteLine("Where is this book located?");
+            foreach (var location in new LocationRepository().GetAllLocations())
+            {
+                    Console.WriteLine("[" + location.Id + "] " + location.LocationName);  
+            }
+            var chosenLocationId = Console.ReadLine();
+            var parsedLocationId = Int32.Parse(chosenGenreId);
+            var chosenLocationName = new LocationRepository().GetLocationById(parsedLocationId).LocationName;
+            book.LocationId = parsedLocationId;
+
+            Console.WriteLine("Here is the information you entered:");
+            Console.WriteLine(book.Title);
+            Console.WriteLine("Published: " + book.YearPublished);
+            Console.WriteLine("By " + result.FirstName +" " + result.LastName);
+            Console.WriteLine("Genre: " + chosenGenreName);
+            Console.WriteLine("Location: "+ chosenLocationName);
+            Console.WriteLine();
+            Console.WriteLine("Is this all correct?");
+            var finalAnswer = Console.ReadLine();
+            if (new Answers().commonYesArr.Contains(finalAnswer))
+            {
+                new BookRepository().AddBook(book);
+                Console.WriteLine(book.Title + " has been added to your library!");
+            }
+            else
+            {
+                Console.WriteLine("Woops. Guess you have to start over.");
+                AddBook();
+            }
+
+        }
 
 
 

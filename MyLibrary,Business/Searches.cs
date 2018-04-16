@@ -1,10 +1,5 @@
 ﻿using MyLibrary.Business;
-using MyLibrary.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyLibrary_Business
 {
@@ -69,11 +64,15 @@ namespace MyLibrary_Business
         {
             Console.WriteLine("Here are some other things you can do. Please choose:");
             Console.WriteLine("[1] Add an author");
+            Console.WriteLine("[2] Add a book");
             var choice = Console.ReadLine();
             switch (choice)
             {
                 case "1":
                     new Authors().AddAuthor();
+                    break;
+                case "2":
+                    new Books().AddBook();
                     break;
             }
 
