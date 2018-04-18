@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 
@@ -45,6 +44,7 @@ namespace MyLibrary.Data
                 return author;
             }
         }
+
 
         public void AddAuthor(Author author)
         {

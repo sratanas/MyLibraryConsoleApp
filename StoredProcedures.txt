@@ -101,3 +101,32 @@ AS
 
 INSERT INTO Books (Title, YearPublished, Author, Genre, Location)
 VALUES (@Title, @YearPublished, @Author, @Genre, @Location)
+
+
+
+CREATE PROCEDURE GetBookDetailsById
+@BookId INT
+
+AS
+
+SELECT b.Id, b.Title, g.GenreName, b.YearPublished, l.LocationName, a.FirstName, a.LastName
+FROM Books as b
+JOIN Locations as l ON b.Location = l.Id
+JOIN Authors as a ON b.Author = a.Id
+JOIN Genres AS g ON b.Genre = g.Id
+WHERE b.Id = @BookId
+
+
+
+CREATE PROCEDURE UpdateBookInformation
+@BookId INT,
+@NewInput VARCHAR (80),
+@UpdateType VARCHAR(80)
+
+AS
+
+IF (@UpdateType = '1') UPDATE Books SET Title = @NewInput WHERE Id = @BookId
+ELSE IF (@UpdateType = '2') UPDATE Books SET Author = PARSE(@NewInput AS INT) WHERE Id = @BookId
+ELSE IF (@UpdateType = '3') UPDATE Books SET YearPublished = PARSE(@NewInput AS INT) WHERE Id = @BookId
+ELSE IF (@UpdateType = '4')  UPDATE Books SET Genre = PARSE(@NewInput AS INT) WHERE Id = @BookId
+ELSE IF (@UpdateType = '4')  UPDATE Books SET Location = PARSE(@NewInput AS INT) WHERE Id = @BookId

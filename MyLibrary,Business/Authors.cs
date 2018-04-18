@@ -3,6 +3,7 @@ using MyLibrary.Data;
 using MyLibrary.Business;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace MyLibrary.Business
 {
@@ -11,36 +12,15 @@ namespace MyLibrary.Business
         public void SearchAuthors()
         {
 
-            Console.WriteLine("Enter the name of the Author you're looking for:");
-            var repo = new AuthorRepository();
-            var input = Console.ReadLine();
-            var result = repo.GetAuthorSearchResults(input);
+                    var authorResult = SearchAuthorsNoBookList();
 
-            if (input == "exit")
-            {
-                new Searches().Exit();
-            }
-            else if (result == null)
-            {
-                Console.WriteLine("I couldn't find that author, please be more specific.");
-                SearchAuthors();
-  
-            }
-
-            else
-            {
-                Console.WriteLine("Were you looking for ");
-
-                //foreach (var author in result)
-                //{
-                    Console.WriteLine(string.Format("{0} {1}?", result.FirstName, result.LastName));
                     var answer = Console.ReadLine();
                     var answerList = new Answers().commonYesArr;
                     if (answerList.Contains(answer))
                     {
-                        Console.WriteLine("Here are all the books you own by " + result.FirstName +" "+ result.LastName+":");
+                        Console.WriteLine("Here are all the books you own by " + authorResult.FirstName +" "+ authorResult.LastName+":");
                         var bookRepo = new BookRepository();
-                        var authorBookList = bookRepo.GetBooksByAuthor(result.Id);
+                        var authorBookList = bookRepo.GetBooksByAuthor(authorResult.Id);
                         foreach(var book in authorBookList)
                         {
                             Console.WriteLine(string.Format("{0}, published {1}", book.Title, book.YearPublished));
@@ -58,14 +38,39 @@ namespace MyLibrary.Business
                         SearchAuthors();
                     }
 
-                //};
+            
+        }
+
+        public Author SearchAuthorsNoBookList()
+        {
+            Console.WriteLine("Enter the name of the Author you're looking for:");
+            var repo = new AuthorRepository();
+            var input = Console.ReadLine();
+            var result = repo.GetAuthorSearchResults(input);
+
+            if (input == "exit")
+            {
+                new Searches().Exit();
+            }
+            else if (result == null)
+            {
+                Console.WriteLine("I couldn't find that author, please be more specific.");
+                SearchAuthors();
 
             }
 
+            else
+            {
+                Console.WriteLine("Were you looking for ");
 
 
-            
+                Console.WriteLine(string.Format("{0} {1}?", result.FirstName, result.LastName));
+            }
+
+            return result;
+
         }
+
 
         public void AddAuthor()
         {

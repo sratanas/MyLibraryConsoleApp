@@ -15,7 +15,7 @@ namespace MyLibrary.Data
                 List<Book> bookList = new List<Book>();
 
                 string query = @"GetAllBookInfo";
-
+                
                 SqlCommand command = new SqlCommand(query, connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlDataReader reader = command.ExecuteReader();
@@ -27,6 +27,7 @@ namespace MyLibrary.Data
                     {
                         var book = new Book();
 
+                        book.Id = Int32.Parse(reader["Id"].ToString());
                         book.Title = reader["Title"].ToString();
                         book.AuthorFirstName = reader["FirstName"].ToString();
                         book.AuthorLastName = reader["LastName"].ToString();
@@ -134,6 +135,62 @@ namespace MyLibrary.Data
 
 
                 command.ExecuteNonQuery();
+
+            }
+        }
+
+        public Book GetBookById(int bookId)
+        {
+
+            using (SqlConnection connection = DBConnection.GetSqlConnection())
+            {
+                var book = new Book();
+
+                string query = @"GetBookDetailsById";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@BookId", bookId);
+
+                command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
+
+
+
+                while (reader.Read())
+                {
+
+                    book.Title = reader["Title"].ToString();
+                    book.AuthorFirstName = reader["FirstName"].ToString();
+                    book.AuthorLastName = reader["LastName"].ToString();
+                    book.GenreName = reader["GenreName"].ToString();
+                    book.YearPublished = Int32.Parse(reader["YearPublished"].ToString());
+                    book.LocationName = reader["LocationName"].ToString();
+
+                }
+                return book;
+
+            }
+
+        }
+
+        public void EditBookInformation(int bookId, string updateType, string newInput)
+        {
+            using (SqlConnection connection = DBConnection.GetSqlConnection())
+            {
+            
+              
+                string query = @"UpdateBookInformation";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@BookId", bookId);
+                command.Parameters.AddWithValue("@UpdateType", updateType);
+                command.Parameters.AddWithValue("@NewInput", newInput);
+
+                command.ExecuteNonQuery();
+
+
 
             }
         }

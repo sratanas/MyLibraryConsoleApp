@@ -1,5 +1,4 @@
-﻿using MyLibrary.Business;
-using System;
+﻿using System;
 
 namespace MyLibrary.Business
 {
@@ -61,7 +60,7 @@ namespace MyLibrary.Business
             } 
         }
 
-        
+        //pulls up second set of options that lead to more methods
         public void MoreOptions()
         {
             Console.WriteLine("Here are some other things you can do. Please choose:");
