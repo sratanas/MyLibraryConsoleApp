@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyLibrary.Common
 {
-    public class Answers
+    public static class Answers
     {
 
 
-        public string[] commonYesArr = {"yes", "Yes", "yea", "yeah", "y", "Y", "yup" };
+       public static string[] commonYesArr = {"yes", "Yes", "yea", "yeah", "y", "Y", "yup" };
 
 
 

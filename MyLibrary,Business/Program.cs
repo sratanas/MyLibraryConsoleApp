@@ -9,7 +9,7 @@ namespace MyLibrary.Business
         {
             Console.Title = "My Awesome Home Library!";
 
-            new Searches().Welcome();
+            Searches.Welcome();
             Console.ReadKey();
 
           

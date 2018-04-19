@@ -102,6 +102,7 @@ namespace MyLibrary.Data
                     {
                         var book = new Book();
 
+                        book.Id = Int32.Parse(reader["Id"].ToString());
                         book.Title = reader["Title"].ToString();
                         book.AuthorFirstName = reader["FirstName"].ToString();
                         book.AuthorLastName = reader["LastName"].ToString();

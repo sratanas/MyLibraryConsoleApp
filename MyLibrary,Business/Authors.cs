@@ -13,22 +13,22 @@ namespace MyLibrary.Business
                     var authorResult = SearchAuthorsNoBookList();
 
                     var answer = Console.ReadLine();
-                    var answerList = new Answers().commonYesArr;
+                    var answerList = Answers.commonYesArr;
                     if (answerList.Contains(answer))
                     {
-                        Console.WriteLine("Here are all the books you own by " + authorResult.FirstName +" "+ authorResult.LastName+":");
+                        Console.WriteLine($"Here are all the books you own by {authorResult.FirstName} {authorResult.LastName}");
                         var bookRepo = new BookRepository();
                         var authorBookList = bookRepo.GetBooksByAuthor(authorResult.Id);
                         foreach(var book in authorBookList)
                         {
-                            Console.WriteLine(string.Format("{0}, published {1}", book.Title, book.YearPublished));
+                            Console.WriteLine($"{book.Title}, published {book.YearPublished}");
                         }
-                    new Searches().Welcome();
+                    Searches.Welcome();
                     Console.WriteLine();
                     }
                     else if(answer == "exit")
                     {
-                        new Searches().Exit();
+                        Searches.Exit();
                     }
                     else
                     {
@@ -48,7 +48,7 @@ namespace MyLibrary.Business
 
             if (input == "exit")
             {
-                new Searches().Exit();
+                Searches.Exit();
             }
             else if (result == null)
             {
@@ -80,7 +80,7 @@ namespace MyLibrary.Business
             Console.WriteLine("Enter the author's FIRST name:");
             author.FirstName = Console.ReadLine();
             Console.WriteLine("Is this author female?");
-            var answerList = new Answers().commonYesArr;
+            var answerList = Answers.commonYesArr;
             var answer = Console.ReadLine();
             if (answerList.Contains(answer))
             {
@@ -94,7 +94,7 @@ namespace MyLibrary.Business
             Console.WriteLine($"You entered {author.FirstName} {author.LastName} as an author.");
 
             new AuthorRepository().AddAuthor(author);
-            new Searches().Welcome();
+            Searches.Welcome();
 
         }
 

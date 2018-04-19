@@ -18,7 +18,7 @@ namespace MyLibrary.Business
             foreach (var book in bookList)
             {
 
-                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.AuthorFirstName} {book.AuthorLastName}");
+                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.FullAuthorName}");
             }
             Console.WriteLine("If you would like to see details of a book, type the Id number and hit enter.");
             var answer = Console.ReadLine();
@@ -37,7 +37,7 @@ namespace MyLibrary.Business
 
             if (input == "exit")
             {
-                new Searches().Exit();
+                Searches.Exit();
             }
             else if (result.Count == 0)
             {
@@ -51,17 +51,16 @@ namespace MyLibrary.Business
   
                     if (result.Count != 0)
                     {
-                    Console.WriteLine("Here are the books that match your search: ");
+                    Console.WriteLine("\nHere are the books that match your search: ");
                         foreach (var book in result)
                         {
-                        Console.WriteLine($"{book.Title} by {book.AuthorFirstName} {book.AuthorLastName}");
+                        Console.WriteLine($"[{book.Id}] {book.Title} by {book.FullAuthorName}");
                         }
-                    new Searches().Welcome();
                     }
                     
                     else if (input == "exit")
                     {
-                        new Searches().Exit();
+                       Searches.Exit();
                     }
                     else
                     {
@@ -69,11 +68,11 @@ namespace MyLibrary.Business
                         SearchTitles();
                     }
 
-                };
+            };
 
-            }
+        }
 
-        
+
         public void AddBook()
         {
             var book = new Book();
@@ -93,9 +92,9 @@ namespace MyLibrary.Business
             if (result.LastName != null)
             {
                 //Returns search from author search
-                Console.WriteLine("Were you looking for: {0} {1}? ", result.FirstName, result.LastName);
+                Console.WriteLine($"Were you looking for: {result.FirstName} {result.LastName}?");
                 var answer = Console.ReadLine();
-                var answerList = new Answers().commonYesArr;
+                var answerList = Answers.commonYesArr;
                 if (answerList.Contains(answer))
                 {
                     book.AuthorId = Convert.ToInt32(result.Id);
@@ -108,14 +107,14 @@ namespace MyLibrary.Business
                 Console.WriteLine("I couldn't find that author, would you like to add them?");
                 var addAuthorAnswer = Console.ReadLine();
 
-                if (new Answers().commonYesArr.Contains(addAuthorAnswer))
+                if (Answers.commonYesArr.Contains(addAuthorAnswer))
                 {
                     new Authors().AddAuthor();
                 }
                 else
                 {
                     Console.WriteLine("You'll have to add this author before you can add one of their books. I'll return you home for now.");
-                    new Searches().Welcome();
+                    Searches.Welcome();
                 }
             }
 
@@ -158,7 +157,7 @@ namespace MyLibrary.Business
             Console.WriteLine();
             Console.WriteLine("Is this all correct?");
             var finalAnswer = Console.ReadLine();
-            if (new Answers().commonYesArr.Contains(finalAnswer))
+            if (Answers.commonYesArr.Contains(finalAnswer))
             {
                 new BookRepository().AddBook(book);
                 Console.WriteLine(book.Title + " has been added to your library!");
@@ -195,7 +194,7 @@ namespace MyLibrary.Business
                 }
                 else if (next == "exit")
                 {
-                    new Searches().Exit();
+                    Searches.Exit();
                 }
 
 

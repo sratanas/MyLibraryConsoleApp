@@ -2,10 +2,10 @@
 
 namespace MyLibrary.Business
 {
-    public class Searches
+    public static class Searches
     {
         //Starting point for the application
-        public void Welcome()
+        public static void Welcome()
         {
 
             Console.WriteLine("Welcome to the Library, what would you like to do? (Type a number.)");
@@ -16,11 +16,11 @@ namespace MyLibrary.Business
             Console.WriteLine();
             Console.WriteLine("(Type exit at any time to start over.)");
             var choice = Console.ReadLine().ToString();
-            new Searches().SearchChoice(choice);
+            SearchChoice(choice);
         }
 
         //First set of choices
-        public void SearchChoice(string choice)
+        public static void SearchChoice(string choice)
         {
 
             switch (choice)
@@ -42,6 +42,7 @@ namespace MyLibrary.Business
                         repo.SearchAuthors();
 
                     }
+                    Welcome();
                     break;
                 case "2":
                     new Books().GetAllBooks();
@@ -61,11 +62,11 @@ namespace MyLibrary.Business
         }
 
         //pulls up second set of options that lead to more methods
-        public void MoreOptions()
+        public static void MoreOptions()
         {
             Console.WriteLine("Here are some other things you can do. Please choose:");
-            Console.WriteLine("[1] Add an author");
-            Console.WriteLine("[2] Add a book");
+            Console.WriteLine("[1] Add an author\n[2] Add a book\n[3] Mark a book out on loan.\n");
+    
             var choice = Console.ReadLine();
             switch (choice)
             {
@@ -75,12 +76,15 @@ namespace MyLibrary.Business
                 case "2":
                     new Books().AddBook();
                     break;
+                case "3":
+                    new Locations().AddLoanedTo();
+                    break;
             }
 
         }
 
 
-        public void Exit()
+        public static void Exit()
         {
 
             Console.WriteLine("Bye, bye!");

@@ -51,8 +51,11 @@ CREATE PROCEDURE TitleSearch
 
 AS
 
-SELECT * FROM Books
+SELECT b.Id, b.Title, a.FirstName, a.LastName FROM Books AS b
+JOIN Authors AS a
+ON b.Author = a.Id
 WHERE Title LIKE @TitleSearchParam
+
 
 
 
@@ -130,3 +133,10 @@ ELSE IF (@UpdateType = '2') UPDATE Books SET Author = PARSE(@NewInput AS INT) WH
 ELSE IF (@UpdateType = '3') UPDATE Books SET YearPublished = PARSE(@NewInput AS INT) WHERE Id = @BookId
 ELSE IF (@UpdateType = '4')  UPDATE Books SET Genre = PARSE(@NewInput AS INT) WHERE Id = @BookId
 ELSE IF (@UpdateType = '4')  UPDATE Books SET Location = PARSE(@NewInput AS INT) WHERE Id = @BookId
+
+
+CREATE PROCEDURE GetAllBooksOutOnLoan
+
+AS
+
+SELECT * FROM Books_OutOnLoan
