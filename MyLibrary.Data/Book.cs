@@ -8,6 +8,7 @@
         public int  AuthorId { get; set; }
         public string AuthorLastName { get; set; }
         public string AuthorFirstName { get; set; }
+        public string FullAuthorName => $"{AuthorFirstName} {AuthorLastName}";
         public int GenreId { get; set; }
         public string GenreName { get; set; }
         public int LocationId { get; set; }

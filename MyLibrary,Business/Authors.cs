@@ -1,9 +1,7 @@
 ﻿using MyLibrary.Common;
 using MyLibrary.Data;
-using MyLibrary.Business;
 using System;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace MyLibrary.Business
 {
@@ -64,7 +62,7 @@ namespace MyLibrary.Business
                 Console.WriteLine("Were you looking for ");
 
 
-                Console.WriteLine(string.Format("{0} {1}?", result.FirstName, result.LastName));
+                Console.WriteLine($"{result.FirstName} {result.LastName}?");
             }
 
             return result;
@@ -93,17 +91,13 @@ namespace MyLibrary.Business
             {
                 author.IsFemale = "No";
             }
-            Console.WriteLine("You entered {0} {1} as an author.", author.FirstName, author.LastName);
+            Console.WriteLine($"You entered {author.FirstName} {author.LastName} as an author.");
 
             new AuthorRepository().AddAuthor(author);
             new Searches().Welcome();
 
         }
 
-        public void GetBooksByAuthor()
-        {
-
-        }
 
 
 

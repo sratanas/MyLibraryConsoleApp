@@ -18,7 +18,7 @@ namespace MyLibrary.Business
             foreach (var book in bookList)
             {
 
-                Console.WriteLine(string.Format("[{0}] \"{1}\" by {2} {3}",book.Id, book.Title, book.AuthorFirstName, book.AuthorLastName));
+                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.AuthorFirstName} {book.AuthorLastName}");
             }
             Console.WriteLine("If you would like to see details of a book, type the Id number and hit enter.");
             var answer = Console.ReadLine();
@@ -54,7 +54,7 @@ namespace MyLibrary.Business
                     Console.WriteLine("Here are the books that match your search: ");
                         foreach (var book in result)
                         {
-                        Console.WriteLine(string.Format("{0} by {1} {2}", book.Title, book.AuthorFirstName, book.AuthorLastName));
+                        Console.WriteLine($"{book.Title} by {book.AuthorFirstName} {book.AuthorLastName}");
                         }
                     new Searches().Welcome();
                     }
@@ -178,18 +178,16 @@ namespace MyLibrary.Business
             var book = new BookRepository().GetBookById(bookId);
 
 
-         
-                Console.WriteLine("Title: " + book.Title);
-                Console.WriteLine("Author: " + book.AuthorFirstName + " " + book.AuthorLastName);
-                Console.WriteLine("Year Published: " + book.YearPublished);
-                Console.WriteLine("Genre: " + book.GenreName);
-                Console.WriteLine("Location: " + book.LocationName);
-                Console.WriteLine();
-                Console.WriteLine("Would you like to:");
-                Console.WriteLine("[1] Update book information.");
-                Console.WriteLine("[2] Add notes about this book.");
-                Console.WriteLine("[3] Delete this book.");
-                Console.WriteLine("[4] Return to book list.");
+                Console.WriteLine("Title: " + book.Title + 
+                                  "\nAuthor: " + book.FullAuthorName +
+                                  "\nYear Published: " + book.YearPublished+
+                                  "\nGenre: " + book.GenreName +
+                                  "\nLocation: " + book.LocationName +
+                                  "\n\nWould you like to: \n[1] Update book information." +
+                                  "\n[2] Add notes about this book." +
+                                  "\n[3] Delete this book."+
+                                  "\n[4] Return to book list.");
+                
                 var next = Console.ReadLine();
                 if (next == "1")
                 {
@@ -210,7 +208,6 @@ namespace MyLibrary.Business
         {
             Console.WriteLine("What would you like to update for this book?");
             Console.WriteLine("[1]Title [2]Author [3]Year Published [4]Genre [5]Location");
-            Console.WriteLine();
             var howToEdit = Console.ReadLine();
             var book = new Book();
             var repo = new BookRepository();
@@ -237,7 +234,7 @@ namespace MyLibrary.Business
                     var genreList = new GenreRepository().GetAllGenres();
                     foreach (var genre in genreList)
                     {
-                        Console.WriteLine(String.Format("[{0}] {1}", genre.Id, genre.GenreName));
+                        Console.WriteLine($"[{genre.Id}] {genre.GenreName}");
                     }
                     var genreToChange = Console.ReadLine();
                     repo.EditBookInformation(bookId, howToEdit, genreToChange);
@@ -247,12 +244,11 @@ namespace MyLibrary.Business
                     var locationList = new LocationRepository().GetAllLocations();
                     foreach (var location in locationList)
                     {
-                        Console.WriteLine(String.Format("[{0}] {1}", location.Id, location.LocationName));
+                        Console.WriteLine($"[{location.Id}] {location.LocationName}");
                     }
                     var locationToChange = Console.ReadLine();
                     repo.EditBookInformation(bookId, howToEdit, locationToChange);
-                    Console.WriteLine("Update successful!");
-                    Console.WriteLine();
+                    Console.WriteLine("Update successful!\n");
                     SeeBookDetails(bookId);
                     break;
 
