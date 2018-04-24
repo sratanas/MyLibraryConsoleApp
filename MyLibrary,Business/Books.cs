@@ -149,7 +149,10 @@ namespace MyLibrary.Business
             var chosenLocationId = Console.ReadLine();
             var parsedLocationId = Int32.Parse(chosenLocationId);
             var chosenLocationName = new LocationRepository().GetLocationById(parsedLocationId).LocationName;
-            book.LocationId = parsedLocationId;
+
+                book.LocationId = parsedLocationId;
+
+            
 
             //Displays entry before executing
             Console.WriteLine("Here is the information you entered:");

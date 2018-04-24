@@ -46,6 +46,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookRepository.cs" />
     <Compile Include="BookOnLoan.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="GenreRepository.cs" />

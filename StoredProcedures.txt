@@ -140,3 +140,23 @@ CREATE PROCEDURE GetAllBooksOutOnLoan
 AS
 
 SELECT * FROM Books_OutOnLoan
+
+
+CREATE PROCEDURE AddUser
+@UserName VARCHAR(50)
+
+AS
+
+INSERT INTO Users
+VALUES(@UserName)
+
+
+CREATE PROCEDURE AddVisitToNewUser
+
+@UserId VARCHAR,
+@Date DATE
+
+AS
+
+INSERT INTO Visits 
+VALUES (PARSE(@userId AS INT), @Date)

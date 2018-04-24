@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyLibrary.Data;
+using System;
+using System.Collections.Generic;
 
 namespace MyLibrary.Business
 {
@@ -8,12 +10,27 @@ namespace MyLibrary.Business
         public static void Welcome()
         {
 
-            Console.WriteLine("Welcome to the Library, what would you like to do? (Type a number.)");
-            Console.WriteLine();
-            Console.WriteLine("[1] Look for a Book");
-            Console.WriteLine("[2] See All Books");
-            Console.WriteLine("[3] See more options");
-            Console.WriteLine();
+            Console.WriteLine("Welcome to the Library, who are you?");
+            var user = Console.ReadLine().ToLower();
+            var userList = new UserRepository().GetUserList();
+
+            if (userList.Contains(user))
+            {
+                Console.WriteLine($"Welcome back {user}! What would you like to do? (Type a number.)");
+
+            }
+            else
+            {
+                Console.WriteLine($"Hi {user}! Looks like you're new here.");
+                var newUser = new User();
+
+                new UserRepository().AddUserAndRecordVisit(user);
+
+            }
+
+
+            Console.WriteLine("What would you like to do? (Type a number.)\n[1] Look for a Book\n[2] See All Books\n[3] See more options\n");
+
             Console.WriteLine("(Type exit at any time to start over.)");
             var choice = Console.ReadLine().ToString();
             SearchChoice(choice);
