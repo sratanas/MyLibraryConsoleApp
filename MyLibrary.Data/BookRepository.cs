@@ -12,6 +12,7 @@ namespace MyLibrary.Data
 
             using (SqlConnection connection = DBConnection.GetSqlConnection())
             {
+                
                 List<Book> bookList = new List<Book>();
 
                 string query = @"GetAllBookInfo";

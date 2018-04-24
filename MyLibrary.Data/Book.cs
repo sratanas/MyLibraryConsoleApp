@@ -1,5 +1,9 @@
 ﻿namespace MyLibrary.Data
 {
+
+    public delegate string AuthorFormat(Book input);
+
+
     public class Book
     {
         public int Id { get; set; }
@@ -13,5 +17,7 @@
         public string GenreName { get; set; }
         public int LocationId { get; set; }
         public string LocationName { get; set; }
+
+
     }
 }

@@ -31,7 +31,37 @@ namespace MyLibrary.Data
         public static SqlConnection GetSqlConnection()
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
-            conn.Open();
+            //conn.Open();
+            conn.InfoMessage += (sender, e) =>
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine($"warning or info {e.Message}");
+                Console.ResetColor();
+
+            };
+
+            conn.StateChange += (sender, e) =>
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine($"curent state: {e.CurrentState}, before: {e.OriginalState}");
+                Console.ResetColor();
+
+            };
+
+            try
+            {
+                conn.StatisticsEnabled = true;
+                conn.FireInfoMessageEventOnUserErrors = true;
+                conn.Open();
+
+                Console.WriteLine("Connection Opened.");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             return conn;
         }
 

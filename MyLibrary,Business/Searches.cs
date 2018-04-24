@@ -65,7 +65,7 @@ namespace MyLibrary.Business
         public static void MoreOptions()
         {
             Console.WriteLine("Here are some other things you can do. Please choose:");
-            Console.WriteLine("[1] Add an author\n[2] Add a book\n[3] Mark a book out on loan.\n");
+            Console.WriteLine("[1] Add an author\n[2] Add a book\n[3] Mark a book out on loan.\n[4] Get a random book\n");
     
             var choice = Console.ReadLine();
             switch (choice)
@@ -79,6 +79,9 @@ namespace MyLibrary.Business
                 case "3":
                     new Locations().AddLoanedTo();
                     break;
+                case "4":
+                    new Books().GetARandomBookId();
+                    break;
             }
 
         }
@@ -87,10 +90,17 @@ namespace MyLibrary.Business
         public static void Exit()
         {
 
-            Console.WriteLine("Bye, bye!");
+            Console.WriteLine("\nBye, bye!\n");
             Welcome();
 
 
         }
+
+        
+
     }
+
+
+    
+
 }

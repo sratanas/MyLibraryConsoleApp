@@ -27,7 +27,7 @@ namespace MyLibrary.Business
 
             if (IdList.Contains(parsedSelection))
             {
-                Console.WriteLine("That book is already out on loan.");
+                Console.WriteLine("That book is already out on loan.\n");
                 AddLoanedTo();
             }
             else
@@ -50,6 +50,8 @@ namespace MyLibrary.Business
             if (Answers.commonYesArr.Contains(answer))
             {
                 new LocationRepository().AddBookOutOnLoan(bookOnLoan);
+                Console.WriteLine();
+                Searches.Welcome();
             }
             else
             {

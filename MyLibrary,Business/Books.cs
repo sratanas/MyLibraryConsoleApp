@@ -1,12 +1,16 @@
 ﻿using MyLibrary.Common;
 using MyLibrary.Data;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyLibrary.Business
 {
     public class Books
     {
+
+    
+        
 
         //Gets all books in the database
         public void GetAllBooks()
@@ -168,6 +172,7 @@ namespace MyLibrary.Business
                 AddBook();
             }
 
+
         }
 
         //Lists details for one book
@@ -254,5 +259,31 @@ namespace MyLibrary.Business
             }
         }
 
+
+        public void GetARandomBookId()
+        {
+            var repo = new BookRepository();
+            var bookList = repo.GetBooks();
+
+            var newBookList = new List<int>();
+
+            foreach (var book in bookList)
+            {
+                   newBookList.Add(book.Id);
+            }
+
+            Random rnd = new Random();
+            int random = rnd.Next(newBookList.Count);
+
+            var randomBook = SeeBookDetails(random);
+            
+            Console.WriteLine(randomBook);
+
+        }
+
+        
+
     }
+
+
 }
