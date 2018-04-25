@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Authors.cs" />
     <Compile Include="Books.cs" />
+    <Compile Include="ItemLists.cs" />
     <Compile Include="Locations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,7 +12,32 @@ namespace MyLibrary.Data
 
             using (SqlConnection connection = DBConnection.GetSqlConnection())
             {
-                
+                connection.InfoMessage += (sender, e) =>
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"warning or info {e.Message}");
+                    Console.ResetColor();
+
+                };
+
+                connection.StateChange += (sender, e) =>
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"curent state: {e.CurrentState}, before: {e.OriginalState}");
+                    Console.ResetColor();
+
+                };
+                try
+                {
+                    connection.StatisticsEnabled = true;
+                    connection.FireInfoMessageEventOnUserErrors = true;
+                    connection.Open();
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 List<Book> bookList = new List<Book>();
 
                 string query = @"GetAllBookInfo";
@@ -26,16 +51,29 @@ namespace MyLibrary.Data
 
                     while (reader.Read())
                     {
+
                         var book = new Book();
+                        var author = new Author();
+                        var genre = new Genre();
+                        var location = new Location();
 
                         book.Id = Int32.Parse(reader["Id"].ToString());
                         book.Title = reader["Title"].ToString();
-                        book.AuthorFirstName = reader["FirstName"].ToString();
-                        book.AuthorLastName = reader["LastName"].ToString();
-                        book.GenreName = reader["GenreName"].ToString();
                         book.YearPublished = Int32.Parse(reader["YearPublished"].ToString());
-                        book.LocationName = reader["LocationName"].ToString();
 
+                        author.Id = Int32.Parse(reader["AuthorId"].ToString());
+                        author.FirstName = reader["FirstName"].ToString();
+                        author.LastName = reader["LastName"].ToString();
+
+                        genre.Id = Int32.Parse(reader["Id"].ToString());
+                        genre.GenreName = reader["GenreName"].ToString();
+
+                        location.Id = Int32.Parse(reader["Id"].ToString());
+                        location.LocationName = reader["LocationName"].ToString();
+
+                        book.Genre = genre;
+                        book.Author = author;
+                        book.Location = location;
                         bookList.Add(book);
                     }
 
@@ -105,8 +143,8 @@ namespace MyLibrary.Data
 
                         book.Id = Int32.Parse(reader["Id"].ToString());
                         book.Title = reader["Title"].ToString();
-                        book.AuthorFirstName = reader["FirstName"].ToString();
-                        book.AuthorLastName = reader["LastName"].ToString();
+                        book.Author.FirstName = reader["FirstName"].ToString();
+                        book.Author.LastName = reader["LastName"].ToString();
 
                         titleList.Add(book);
                     }
@@ -130,9 +168,9 @@ namespace MyLibrary.Data
 
                 command.Parameters.AddWithValue("@Title", book.Title);
                 command.Parameters.AddWithValue("@YearPublished", book.YearPublished);
-                command.Parameters.AddWithValue("@Author", book.AuthorId);
-                command.Parameters.AddWithValue("@Genre", book.GenreId);
-                command.Parameters.AddWithValue("@Location", book.LocationId);
+                command.Parameters.AddWithValue("@Author", book.Author.Id);
+                command.Parameters.AddWithValue("@Genre", book.Genre);
+                command.Parameters.AddWithValue("@Location", book.Location.Id);
 
 
 
@@ -162,12 +200,27 @@ namespace MyLibrary.Data
                 while (reader.Read())
                 {
 
+                    var author = new Author();
+                    var genre = new Genre();
+                    var location = new Location();
+
+                    book.Id = Int32.Parse(reader["Id"].ToString());
                     book.Title = reader["Title"].ToString();
-                    book.AuthorFirstName = reader["FirstName"].ToString();
-                    book.AuthorLastName = reader["LastName"].ToString();
-                    book.GenreName = reader["GenreName"].ToString();
                     book.YearPublished = Int32.Parse(reader["YearPublished"].ToString());
-                    book.LocationName = reader["LocationName"].ToString();
+
+                    author.Id = Int32.Parse(reader["AuthorId"].ToString());
+                    author.FirstName = reader["FirstName"].ToString();
+                    author.LastName = reader["LastName"].ToString();
+
+                    genre.Id = Int32.Parse(reader["Id"].ToString());
+                    genre.GenreName = reader["GenreName"].ToString();
+
+                    location.Id = Int32.Parse(reader["Id"].ToString());
+                    location.LocationName = reader["LocationName"].ToString();
+
+                    book.Location = location;
+                    book.Genre = genre;
+                    book.Author = author;
 
                 }
                 return book;

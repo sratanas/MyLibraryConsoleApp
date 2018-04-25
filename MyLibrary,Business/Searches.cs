@@ -1,6 +1,5 @@
 ﻿using MyLibrary.Data;
 using System;
-using System.Collections.Generic;
 
 namespace MyLibrary.Business
 {
@@ -22,7 +21,6 @@ namespace MyLibrary.Business
             else
             {
                 Console.WriteLine($"Hi {user}! Looks like you're new here.");
-                var newUser = new User();
 
                 new UserRepository().AddUserAndRecordVisit(user);
 
@@ -30,7 +28,6 @@ namespace MyLibrary.Business
 
 
             Console.WriteLine("What would you like to do? (Type a number.)\n[1] Look for a Book\n[2] See All Books\n[3] See more options\n");
-
             Console.WriteLine("(Type exit at any time to start over.)");
             var choice = Console.ReadLine().ToString();
             SearchChoice(choice);
@@ -43,10 +40,8 @@ namespace MyLibrary.Business
             switch (choice)
             {
                 case "1":
-                    Console.WriteLine("How do you want to search?");
-                    Console.WriteLine("[1] Title");
-                    Console.WriteLine("[2] Author");
-                    Console.WriteLine("[3] Location");
+                    Console.WriteLine("How do you want to search?\n[1] Title\n[2] Author\n[3] Location");
+
                     var searchChoice = Console.ReadLine();
                     if (searchChoice == "1")
                     {

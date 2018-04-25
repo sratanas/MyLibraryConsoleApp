@@ -9,9 +9,6 @@ namespace MyLibrary.Business
     public class Books
     {
 
-    
-        
-
         //Gets all books in the database
         public void GetAllBooks()
         {
@@ -22,7 +19,7 @@ namespace MyLibrary.Business
             foreach (var book in bookList)
             {
 
-                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.FullAuthorName}");
+                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.Author.FullAuthorName}");
             }
             Console.WriteLine("If you would like to see details of a book, type the Id number and hit enter.");
             var answer = Console.ReadLine();
@@ -58,7 +55,7 @@ namespace MyLibrary.Business
                     Console.WriteLine("\nHere are the books that match your search: ");
                         foreach (var book in result)
                         {
-                        Console.WriteLine($"[{book.Id}] {book.Title} by {book.FullAuthorName}");
+                        Console.WriteLine($"[{book.Id}] {book.Title} by {book.Author.FullAuthorName}");
                         }
                     }
                     
@@ -101,7 +98,7 @@ namespace MyLibrary.Business
                 var answerList = Answers.commonYesArr;
                 if (answerList.Contains(answer))
                 {
-                    book.AuthorId = Convert.ToInt32(result.Id);
+                    book.Author.Id = Convert.ToInt32(result.Id);
                 }
             }
 
@@ -138,7 +135,7 @@ namespace MyLibrary.Business
             var chosenGenreId = Console.ReadLine();
             var parsedId = Int32.Parse(chosenGenreId);
             var chosenGenreName = new GenreRepository().GetGenreById(parsedId).GenreName;
-            book.GenreId = parsedId;
+            book.Genre.Id = parsedId;
 
             //Displays locations and enters chosen location Id
             Console.WriteLine("Where is this book located?");
@@ -167,7 +164,7 @@ namespace MyLibrary.Business
             if (Answers.commonYesArr.Contains(finalAnswer))
             {
                 new BookRepository().AddBook(book);
-                Console.WriteLine(book.Title + " has been added to your library!");
+                Alerts.AddedSomethingAlert(book);
             }
             else
             {
@@ -186,9 +183,9 @@ namespace MyLibrary.Business
 
 
                 Console.WriteLine("Title: " + book.Title + 
-                                  "\nAuthor: " + book.FullAuthorName +
+                                  "\nAuthor: " + book.Author.FullAuthorName +
                                   "\nYear Published: " + book.YearPublished+
-                                  "\nGenre: " + book.GenreName +
+                                  "\nGenre: " + book.Genre.GenreName +
                                   "\nLocation: " + book.LocationName +
                                   "\n\nWould you like to: \n[1] Update book information." +
                                   "\n[2] Add notes about this book." +

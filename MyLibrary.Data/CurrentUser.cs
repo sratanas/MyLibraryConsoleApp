@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyLibrary.Data
 {
@@ -44,7 +41,7 @@ namespace MyLibrary.Data
                     {
                         var user = new User();
 
-                        //user.Id = Int32.Parse(reader["Id"].ToString());
+                        user.Id = Int32.Parse(reader["Id"].ToString());
                         user.UserName = reader["UserName"].ToString().ToLower();
 
                         UserNameList.Add(user.UserName);
@@ -75,7 +72,6 @@ namespace MyLibrary.Data
                 var intId = Convert.ToInt32(id);
                 var stringId = id.ToString();
 
-                var visit = new Visit();
 
                 string query2 = @"AddVisitToNewUser";
 
@@ -94,7 +90,7 @@ namespace MyLibrary.Data
 
         }
 
-        public void RecordVisit()
+        public void RecordVisitForExistingUser()
         {
 
         }

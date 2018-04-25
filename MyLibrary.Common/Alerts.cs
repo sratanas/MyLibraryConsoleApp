@@ -1,4 +1,5 @@
-﻿using MyLibrary.Data;
+﻿using MyLibrary.Business;
+using MyLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,14 @@ using System.Threading.Tasks;
 
 namespace MyLibrary.Common
 {
-    public class Alerts
+    public static class Alerts
     {
 
-        public void BookMessage(string message)
+        public static void AddedSomethingAlert(Media media)
         {
-            //var bookCount = new BookRepository();
-            //var bookTotal = bookCount.GetBooks().Count;
 
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            //Console.WriteLine($"You now have {bookTotal} books in your database!");
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.WriteLine($"You added {media.Title}!");
             Console.ResetColor();
         }
 
