@@ -2,11 +2,11 @@ CREATE PROCEDURE GetAllBookInfo
 
 AS
 
-SELECT b.Title, g.GenreName, b.YearPublished, l.LocationName, a.FirstName, a.LastName
-FROM Books as b
-JOIN Locations as l ON b.Location = l.Id
-JOIN Authors as a ON b.Author = a.Id
-JOIN Genres AS g ON b.Genre = g.Id
+WITH book_union AS (SELECT Id, Title, AuthorId, Genre, Location FROM Books
+UNION 
+SELECT Id, Title, Author, Genre, Location FROM AudioBooks)
+SELECT book_union.Id, Genre, Location, FirstName, LastName, Title FROM book_union
+JOIN Authors ON Authors.id = book_union.AuthorId
 
 
 
@@ -51,9 +51,11 @@ CREATE PROCEDURE TitleSearch
 
 AS
 
-SELECT b.Id, b.Title, a.FirstName, a.LastName FROM Books AS b
-JOIN Authors AS a
-ON b.Author = a.Id
+WITH book_union AS (SELECT Id, Title, AuthorId FROM Books
+UNION 
+SELECT Id, Title, Author FROM AudioBooks)
+SELECT book_union.Id, FirstName, LastName, Title FROM book_union
+JOIN Authors ON Authors.id = book_union.AuthorId
 WHERE Title LIKE @TitleSearchParam
 
 

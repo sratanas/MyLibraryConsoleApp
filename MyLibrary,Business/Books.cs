@@ -19,7 +19,7 @@ namespace MyLibrary.Business
             foreach (var book in bookList)
             {
 
-                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.Author.FullAuthorName}");
+                Console.WriteLine($"[{book.Id}] \"{book.Title}\" by {book.Author.FullAuthorName} Location/Type: {book.Location.LocationName}");
             }
             Console.WriteLine("If you would like to see details of a book, type the Id number and hit enter.");
             var answer = Console.ReadLine();

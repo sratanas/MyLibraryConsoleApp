@@ -61,14 +61,14 @@ namespace MyLibrary.Data
                         book.Title = reader["Title"].ToString();
                         book.YearPublished = Int32.Parse(reader["YearPublished"].ToString());
 
-                        author.Id = Int32.Parse(reader["AuthorId"].ToString());
+                        //author.Id = Int32.Parse(reader["AuthorId"].ToString());
                         author.FirstName = reader["FirstName"].ToString();
                         author.LastName = reader["LastName"].ToString();
 
-                        genre.Id = Int32.Parse(reader["Id"].ToString());
+                        //genre.Id = Int32.Parse(reader["Id"].ToString());
                         genre.GenreName = reader["GenreName"].ToString();
 
-                        location.Id = Int32.Parse(reader["Id"].ToString());
+                        //location.Id = Int32.Parse(reader["Id"].ToString());
                         location.LocationName = reader["LocationName"].ToString();
 
                         book.Genre = genre;
