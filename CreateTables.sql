@@ -28,6 +28,22 @@ LoanedTo VARCHAR(50),
 DateLoaned DATE
 )
 
+CREATE TABLE AudioBooks (
+Id INT IDENTITY PRIMARY KEY,
+Title VARCHAR(200),
+YearPublished INT,
+);
+
+ALTER TABLE AudioBooks
+ADD Author INT REFERENCES Authors(Id)
+
+ALTER TABLE AudioBooks
+ADD Genre INT REFERENCES Genres(Id)
+
+ALTER TABLE AudioBooks
+ADD Location INT REFERENCES Locations(Id) DEFAULT 5;
+
+
 ALTER TABLE Books
 ADD Author INT REFERENCES Authors(Id)
 
@@ -41,7 +57,8 @@ INSERT INTO Locations (LocationName)
 VALUES ('Living Room Shelf'),
 ('Dining Room Shelf'),
 ('Bedroom'),
-('On Loan')
+('On Loan'),
+('Digital')
 
 --MOCK DATA INSERTS--
 

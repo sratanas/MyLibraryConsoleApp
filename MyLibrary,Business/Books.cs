@@ -49,7 +49,6 @@ namespace MyLibrary.Business
 
             else
             {
-  
                     if (result.Count != 0)
                     {
                     Console.WriteLine("\nHere are the books that match your search: ");
@@ -147,7 +146,7 @@ namespace MyLibrary.Business
             var parsedLocationId = Int32.Parse(chosenLocationId);
             var chosenLocationName = new LocationRepository().GetLocationById(parsedLocationId).LocationName;
 
-                book.LocationId = parsedLocationId;
+                book.Location.Id = parsedLocationId;
 
             
 
@@ -186,7 +185,7 @@ namespace MyLibrary.Business
                                   "\nAuthor: " + book.Author.FullAuthorName +
                                   "\nYear Published: " + book.YearPublished+
                                   "\nGenre: " + book.Genre.GenreName +
-                                  "\nLocation: " + book.LocationName +
+                                  "\nLocation: " + book.Location.LocationName +
                                   "\n\nWould you like to: \n[1] Update book information." +
                                   "\n[2] Add notes about this book." +
                                   "\n[3] Delete this book."+

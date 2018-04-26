@@ -12,32 +12,32 @@ namespace MyLibrary.Data
 
             using (SqlConnection connection = DBConnection.GetSqlConnection())
             {
-                connection.InfoMessage += (sender, e) =>
-                {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"warning or info {e.Message}");
-                    Console.ResetColor();
+                //connection.InfoMessage += (sender, e) =>
+                //{
+                //    Console.BackgroundColor = ConsoleColor.Red;
+                //    Console.WriteLine($"warning or info {e.Message}");
+                //    Console.ResetColor();
 
-                };
+                //};
 
-                connection.StateChange += (sender, e) =>
-                {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"curent state: {e.CurrentState}, before: {e.OriginalState}");
-                    Console.ResetColor();
+                //connection.StateChange += (sender, e) =>
+                //{
+                //    Console.BackgroundColor = ConsoleColor.Red;
+                //    Console.WriteLine($"curent state: {e.CurrentState}, before: {e.OriginalState}");
+                //    Console.ResetColor();
 
-                };
-                try
-                {
-                    connection.StatisticsEnabled = true;
-                    connection.FireInfoMessageEventOnUserErrors = true;
-                    connection.Open();
-                }
+                //};
+                //try
+                //{
+                //    connection.StatisticsEnabled = true;
+                //    connection.FireInfoMessageEventOnUserErrors = true;
+                //    connection.Open();
+                //}
 
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine(ex.Message);
+                //}
                 List<Book> bookList = new List<Book>();
 
                 string query = @"GetAllBookInfo";
@@ -90,6 +90,7 @@ namespace MyLibrary.Data
             {
                 List<Book> authorBookList = new List<Book>();
 
+
                 string query = @"GetBooksByAuthor";
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -122,6 +123,7 @@ namespace MyLibrary.Data
         public List<Book> SearchTitles(string title)
         {
             using (SqlConnection connection = DBConnection.GetSqlConnection())
+
             {
                 List<Book> titleList = new List<Book>();
 
@@ -140,11 +142,14 @@ namespace MyLibrary.Data
                     while (reader.Read())
                     {
                         var book = new Book();
+                        var author = new Author();
 
                         book.Id = Int32.Parse(reader["Id"].ToString());
                         book.Title = reader["Title"].ToString();
-                        book.Author.FirstName = reader["FirstName"].ToString();
-                        book.Author.LastName = reader["LastName"].ToString();
+                        author.FirstName = reader["FirstName"].ToString();
+                        author.LastName = reader["LastName"].ToString();
+
+                        book.Author = author;
 
                         titleList.Add(book);
                     }

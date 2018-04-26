@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioBook.cs" />
+    <Compile Include="Book\AudioBook\AudioBook.cs" />
     <Compile Include="Author\Author.cs" />
     <Compile Include="Author\AuthorRepository.cs" />
     <Compile Include="Book\Book.cs" />
